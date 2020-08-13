@@ -54,14 +54,13 @@ export const signUp = (user, history) => {
       data: user,
     })
       .then((response) => {
-        console.log("hello", response);
         const { data } = response.data;
         dispatch(signUpSuccess(data));
         history.push("/signIn");
       })
       .catch((error) => {
         console.log(error);
-        dispatch(signUpFailure(error.response.data.message));
+        // dispatch(signUpFailure(error));
       });
   };
 };
@@ -87,7 +86,7 @@ const signInFailure = (error) => {
   };
 };
 
-export const signIn = (payload) => {
+export const signIn = (payload, history) => {
   return function (dispatch) {
     dispatch(signInRequest);
     axios({
@@ -102,6 +101,8 @@ export const signIn = (payload) => {
         const { token } = response.data;
         localStorage.setItem("USER-TOKEN", token);
         dispatch(signInSuccess(token));
+        history.push("/");
+        console.log("Success");
       })
       .catch((error) => {
         dispatch(signInFailure(error.response.data.message));

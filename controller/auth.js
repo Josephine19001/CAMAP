@@ -1,5 +1,5 @@
 import UserServices from "../services/auth";
-import { Error } from "../util/error";
+// import { Error } from "../util/error";
 
 export const signUp = async (req, res, next) => {
   try {
@@ -11,18 +11,13 @@ export const signUp = async (req, res, next) => {
       data: savedUser,
     });
   } catch (error) {
-    console.log(
-      res.status(422).json({
-        success: false,
-        data: error,
-      })
-    );
-    res.status(422).json({
-      success: false,
-      data: error,
-    });
+    console.log(error);
+    // res.status(422).json({
+    //   success: false,
+    //   data: error,
+    // });
     // Error(error, res);
-    next();
+    next(new Error(error.message));
   }
 };
 
@@ -36,7 +31,7 @@ export const signIn = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    Error(error, res);
-    next();
+    // Error(error, res);
+    // next();
   }
 };

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Alert from "materialize-css";
+import axios from "axios";
 
 import { signUp } from "../redux/action-creator/auth";
 
@@ -27,12 +29,33 @@ const SignUp = () => {
     setConfirmPassword(event.target.value);
   };
 
+  // const handleSignUpClick = () => {
+  //   axios({
+  //     method: "post",
+  //     url: "/signUp",
+  //     data: { name: "", password: "", email: "" },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // };
+
   const handleSignUpClick = (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      alert("Password do not match");
+      Alert.toast({
+        html: "Password do not match",
+        classes: "#c62828 red darken-3",
+      });
     } else {
-      dispatch(signUp({ name, email, password }, history));
+      if (error) {
+        // Alert.toast({
+        //   html: error,
+        //   classes: "#c62828 red darken-3",
+        // });
+        return;
+      } else {
+        dispatch(signUp({ name, email, password }, history));
+      }
     }
   };
 

@@ -73,3 +73,9 @@ a {
   color: red;
   margin: 10px 0px;
 }
+
+#toast-container {
+  top: 30px !important;
+  right: 20px !important;
+  left: auto !important;
+}

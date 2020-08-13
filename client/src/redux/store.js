@@ -11,6 +11,12 @@ const initState = {
     loading: false,
     isAuthenticated: false,
   },
+  post: {
+    allPosts: [],
+    error: "",
+    loading: false,
+    currentPost: {},
+  },
 };
 
 export default function makeStore(initialState = initState) {

@@ -20,7 +20,7 @@ export const createPost = async (req, res, next) => {
       data: newPost,
     });
   } catch (error) {
-    Error(error, res);
+    console.log(error);
     next();
   }
 };
@@ -35,7 +35,7 @@ export const getAllPost = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    Error(error, res);
+
     next();
   }
 };
@@ -50,7 +50,7 @@ export const getPostByMe = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    Error(error, res);
+
     next();
   }
 };
